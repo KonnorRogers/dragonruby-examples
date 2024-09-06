@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd "`dirname "$0"`"
-cd "../../../"
-exec ./dragonruby ./walking-character
+cd "../../"
+exec ./dragonruby ./samples/walking-character

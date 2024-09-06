@@ -259,8 +259,6 @@ def tick(args)
                       g: 255,
                       b: 255 }
 
-
-
   # args.outputs.debug << "Framerate: #{$gtk.current_framerate}"
   # args.outputs.debug << "Player: #{state.player}"
   # args.outputs.debug << "Camera: #{state.camera}"

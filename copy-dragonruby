@@ -7,7 +7,8 @@
 for filename in "$@"; do
   base_filename="$(basename "$filename")"
 
-  if [[ base_filename != "mygame" ]] && [[ base_filename != "samples" ]]; then
-    cp -R "$filename" .; done
+  if [[ "$base_filename" != "mygame" ]] && [[ "$base_filename" != "samples" ]]; then
+    cp -R "$filename" .
+    echo "Copying: "$base_filename" ..."
   fi
 done

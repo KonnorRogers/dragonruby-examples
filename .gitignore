@@ -13,3 +13,6 @@ dragonruby.png
 eula.txt
 font.ttf
 open-source-licenses.txt
+tmp/
+logs/
+docs/
