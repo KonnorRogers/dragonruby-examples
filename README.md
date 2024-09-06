@@ -36,4 +36,7 @@ I'll be adding examples as I find things worth adding while working with Dragonr
 
 ### examples/walking-character
 
-![Video of a character walking in DragonRuby](example-videos/walking-character.mp4)
+
+https://github.com/user-attachments/assets/5f0979ee-ed34-42ab-8638-1511ddc6a961
+
+
