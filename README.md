@@ -16,3 +16,18 @@ Now, with `dragonruby-examples` as the "current working directory", run the foll
 ```bash
 ./copy-dragonruby ~/Downloads/dragonruby-gtk-macos/dragonruby-macos/*
 ```
+
+Alternatively, you can manually copy every file from Dragonruby into the root of this repo excluding "samples" and "mygame".
+
+## Running a sample
+
+```bash
+cd ./examples/walking-character
+./run
+```
+
+This will boot up dragonruby and you should see the sample running!
+
+## Whats next?
+
+I'll be adding examples as I find things worth adding while working with Dragonruby!
