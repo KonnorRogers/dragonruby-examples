@@ -31,3 +31,11 @@ This will boot up dragonruby and you should see the sample running!
 ## Whats next?
 
 I'll be adding examples as I find things worth adding while working with Dragonruby!
+
+## Videos
+
+### examples/walking-character
+
+<video playsinline controls>
+  <source src="example-videos/walking-character.mp4" type="video/mp4">
+</video>

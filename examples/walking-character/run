@@ -2,4 +2,4 @@
 
 cd "`dirname "$0"`"
 cd "../../"
-exec ./dragonruby ./samples/walking-character
+exec ./dragonruby ./examples/walking-character
