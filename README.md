@@ -36,4 +36,4 @@ I'll be adding examples as I find things worth adding while working with Dragonr
 
 ### examples/walking-character
 
-<video playsinline controls src="example-videos/walking-character.mp4" type="video/mp4"></video>
+![Video of a character walking in DragonRuby](example-videos/walking-character.mp4)
