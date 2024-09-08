@@ -133,12 +133,6 @@ def tick(args)
     hash
   end
 
-  # Render buttons
-  args.state.keybinding_buttons.each do |hash|
-    args.outputs.labels << { x: hash[:x] - (hash[:w]), y: hash[:y] + ((hash[:h] * 2) / 3), h: hash[:h], text: "#{hash[:action]}" }
-    create_button(args, id: hash[:id], text: hash[:text], w: hash[:w], h: hash[:h])
-  end
-
   last_button = args.state.buttons[-1]
   args.state.reset_button ||= {
     id: "reset_keybindings_button",
@@ -152,11 +146,27 @@ def tick(args)
 
   reset_button = args.state.reset_button
 
-  # Render reset button
-  create_button(args, id: reset_button[:id], text: reset_button[:text], w: reset_button[:w], h: reset_button[:h])
-
   # Push it to buttons.
   args.state.buttons << reset_button
+
+  if args.inputs.mouse
+    args.state.buttons.each do |b|
+      if b.intersect_rect?(args.inputs.mouse)
+        b[:hover] = true
+      else
+        b[:hover] = false
+      end
+    end
+  end
+
+  # Render reset button
+  create_button(args, id: reset_button[:id], text: reset_button[:text], w: reset_button[:w], h: reset_button[:h], hover: reset_button[:hover])
+
+  # Render buttons
+  args.state.keybinding_buttons.each do |hash|
+    args.outputs.labels << { x: hash[:x] - (hash[:w]), y: hash[:y] + ((hash[:h] * 2) / 3), h: hash[:h], text: "#{hash[:action]}" }
+    create_button(args, id: hash[:id], text: hash[:text], w: hash[:w], h: hash[:h], hover: hash[:hover])
+  end
 
   # check if a mouse click occurred
   if args.inputs.mouse.click
@@ -209,13 +219,15 @@ def set_keybinding(args, method, str)
   args.state.selected_button = nil
 end
 
-def create_button(args, id:, text:, w:, h:)
+def create_button(args, id:, text:, w:, h:, hover: false)
   # render_targets only need to be created once, we use the the id to determine if the texture
   # has already been created
   args.state.created_buttons ||= {}
 
   cached_button = args.state.created_buttons[id]
-  return if cached_button && cached_button.text == text # this is an escape hatch to break the cache when the text changes.
+
+  # Cache checks if we need to make a new render.
+  return if cached_button && cached_button.text == text && cached_button.hover == hover
 
   # if the render_target hasn't been created, then generate it and store it in the created_buttons cache
   args.state.created_buttons[id] = { created_at: Kernel.tick_count, id: id, w: w, h: h, text: text }
@@ -227,6 +239,12 @@ def create_button(args, id:, text:, w:, h:)
   # create a border
   args.outputs[id].borders << { x: 0, y: 0, w: w, h: h }
 
+  # if hover
+  #   puts hover
+  # end
+  bg_color = hover ? {r: 0, g: 0, b: 0, a: 125 } : { r: 0, g: 0, b: 0, a: 0 }
+
+  args.outputs[id].solids << { x: 0, y: 0, w: w, h: h, **bg_color }
   # create a label centered vertically and horizontally within the texture
   args.outputs[id].labels << { x: w / 2, y: h / 2, text: text, vertical_alignment_enum: 1, alignment_enum: 1 }
 end
