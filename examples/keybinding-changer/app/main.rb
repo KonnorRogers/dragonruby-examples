@@ -99,7 +99,7 @@ def tick(args)
   args.state.keybindings ||= load_keybindings(args)
 
   text = "Keybindings will be saved to '#{args.state.keybindings_file}'"
-  args.outputs.labels << { x: 640 - (text.length * 6), y: 30.from_top, text: text }
+  args.outputs.labels << { x: 640, anchor_x: 0.5, anchor_y: 0.5, y: 30.from_top, text: text }
 
   if args.inputs.keyboard.s
     save_keybindings(args)
@@ -164,7 +164,7 @@ def tick(args)
 
   # Render buttons
   args.state.keybinding_buttons.each do |hash|
-    args.outputs.labels << { x: hash[:x] - (hash[:w]), y: hash[:y] + ((hash[:h] * 2) / 3), h: hash[:h], text: "#{hash[:action]}" }
+    args.outputs.labels << { x: hash[:x] - 75, anchor_x: 0.5, anchor_y: 0.6, y: hash[:y] + (hash[:h] / 2), h: hash[:h], text: "#{hash[:action]}" }
     create_button(args, id: hash[:id], text: hash[:text], w: hash[:w], h: hash[:h], hover: hash[:hover])
   end
 
@@ -191,7 +191,7 @@ def tick(args)
   # if there was a selected button, print it's id
   if keybinding_button?(args, args.state.selected_button)
     text = "Set a keybinding for: #{args.state.selected_button[:method]}"
-    args.outputs.labels << { x: 640 - (text.length * 6), y: 80.from_top, text: text }
+    args.outputs.labels << { x: 640, anchor_x: 0.5, anchor_y: 0.5, y: 80.from_top, text: text }
   end
 
   if args.state.current_key && args.state.selected_button && args.state.current_key[:pressed_at] > args.state.selected_button[:selected_at]
@@ -207,14 +207,29 @@ def keybinding_button?(args, button)
   args.state.keybinding_buttons.find { |kb_button| kb_button[:id] == button[:id] }
 end
 
-def set_keybinding(args, method, str)
+def set_keybinding(args, method, keybinding_str)
   # Dont do anything for empty methods.
   return if method.to_s.empty?
 
   # Make sure the keybinding exists.
   return if args.state.keybindings[method.to_s].nil?
 
-  args.state.keybindings[method.to_s] = str
+  already_set_method = args.state.keybindings.find do |ary|
+    key = ary[0]
+    # We dont care if they set it to the same keybinding.
+    next if key == method
+
+    value = ary[1]
+    value == keybinding_str
+  end
+
+  if already_set_method
+    error_message = "\"#{keybinding_str}\" is already set for \"#{already_set_method[0]}\"."
+    args.outputs.labels << { x: 640, anchor_x: 0.5, anchor_y: 0.5, y: 120.from_top, text: error_message, r: 255, b: 0, g: 0}
+    return
+  end
+
+  args.state.keybindings[method.to_s] = keybinding_str
   save_keybindings(args)
   args.state.selected_button = nil
 end
