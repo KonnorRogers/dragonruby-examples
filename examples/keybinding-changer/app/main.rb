@@ -152,8 +152,8 @@ def tick(args)
   args.state.keybindings_file ||= "keybindings.json"
   args.state.keybindings ||= load_keybindings(args)
 
-  args.state.keybindings_scene = KeybindingScene.new
-  args.state.play_scene = PlayScene.new
+  args.state.keybindings_scene ||= KeybindingScene.new
+  args.state.play_scene ||= PlayScene.new
 
   args.state.current_scene ||= args.state.play_scene
 
@@ -449,7 +449,6 @@ class KeybindingScene
       "display_key" => display_key,
       "keyboard_key" => keyboard_key,
     }
-    puts args.state.keybindings
     save_keybindings(args)
     args.state.selected_button = nil
   end
