@@ -39,4 +39,12 @@ I'll be adding examples as I find things worth adding while working with Dragonr
 
 https://github.com/user-attachments/assets/5f0979ee-ed34-42ab-8638-1511ddc6a961
 
+## examples/keybinding-changer
+
+
+
+https://github.com/user-attachments/assets/73bc8668-ddc5-485f-921a-0745436374fb
+
+
+
 
