@@ -103,7 +103,7 @@ def load_keybindings(args)
   keybindings
 end
 
-# Primitive for turning a value into a JSON string. Really dont feel like recursively looking through nested hashes and dealing with arrays. I'm lazy. Its not needed.
+# Primitive for turning a value into a JSON string. Right now it supports Hash, Numeric, String, Symbol, and nil. Didnt add support for arrays because it wasn't needed. But if you plan to do key combos...it could be helpful?
 def to_json_value(value, spacer, depth)
   return "null" if value.nil?
 
@@ -124,7 +124,7 @@ def to_json_value(value, spacer, depth)
   raise "Value is not of type String, Symbol, Hash, Numeric, or nil"
 end
 
-# down and dirty to_json. No recursion. No Arrays. No hashes. (yet) just numbers, strings, and nil.
+# down and dirty to_json. No Arrays. just hashes, numbers, symbols, strings, and nil.
 def to_json(hash, spacer = "  ", depth = 1)
   strs = []
 
