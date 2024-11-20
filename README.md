@@ -7,7 +7,7 @@ Collection of helpful examples for me.
 To get started, clone the repo.
 
 ```bash
-git clone https://github.com/konnorrogers/dagonruby-examples.git
+git clone https://github.com/konnorrogers/dragonruby-examples.git
 cd dragonruby-examples
 ```
 
