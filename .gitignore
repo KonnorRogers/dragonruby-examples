@@ -18,6 +18,7 @@ logs/
 docs/
 mygame/
 samples/
+.dragonruby/
 
 
 examples/keybinding-changer/keybindings.json
