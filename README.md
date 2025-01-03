@@ -14,7 +14,7 @@ cd dragonruby-examples
 Now, with `dragonruby-examples` as the "current working directory", run the following script to copy your `dragonruby` binaries into the root of this repo.
 
 ```bash
-./copy-dragonruby ~/Downloads/dragonruby-gtk-macos/dragonruby-macos/*
+./copy-dragonruby ~/Downloads/dragonruby-gtk-macos/dragonruby-macos/* ~/Downloads/dragonruby-gtk-macos/dragonruby-macos/.*
 ```
 
 Alternatively, you can manually copy every file from Dragonruby into the root of this repo excluding "samples" and "mygame".
