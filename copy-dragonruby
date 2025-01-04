@@ -1,14 +1,15 @@
 #!/bin/sh
 
 # @example
-#   ./copy-dragonruby.sh ~/Downloads/dragonruby-gtk-macos/dragonruby-macos
+#   ./copy-dragonruby ~/Downloads/dragonruby-gtk-macos/dragonruby-macos/* ~/Downloads/dragonruby-gtk-macos/dragonruby-macos/.*
+
 #
 # This will copy everything from dragonruby-macos into the current working directory. Make sure to run this at the root of this github repo.
 for filename in "$@"; do
   base_filename="$(basename "$filename")"
 
   if [[ "$base_filename" != "mygame" ]] && [[ "$base_filename" != "samples" ]]; then
-    cp -R "$filename" .
+    # cp -R "$filename" .
     echo "Copying: "$base_filename" ..."
   fi
 done
