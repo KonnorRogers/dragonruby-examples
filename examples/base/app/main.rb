@@ -1,7 +1,9 @@
 def tick(args)
-  text = "Hello World"
-  args.outputs.labels << { x: (1280 / 2), y: (720 / 2), anchor_x: 0.5, anchor_y: 0.5, text: text }
+  args.outputs.labels << {
+    x: 640,
+    y: 360,
+    text: "Hello World"
+  }
 end
-
 $gtk.reset
 
